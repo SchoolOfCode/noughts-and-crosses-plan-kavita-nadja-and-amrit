@@ -16,9 +16,7 @@ function calculateWinner(squares) {
    ];
 
    for (let i = 0; i < winningCombos.length; i++) {
-      // assigns
       const [a, b, c] = winningCombos[i];
-      console.log("this is my varArray", [a, b, c]);
 
       if (
          squares[a] && // check if squares[a] is true (i.e. not null)
