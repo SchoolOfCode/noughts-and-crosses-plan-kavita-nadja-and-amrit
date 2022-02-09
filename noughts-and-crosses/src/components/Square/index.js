@@ -1,5 +1,10 @@
-function Sqaure({ value, onClick }) {
-  return <div onClick={onClick}>{value}</div>;
+import css from './Square.module.css';
+
+function Square({ value, makeMove, id }) {
+  function handleClick() {
+    makeMove(id, value)
+  }
+  return <div className={css.square} onClick={handleClick}>{value}</div>;
 }
 
-export default Sqaure;
+export default Square;
