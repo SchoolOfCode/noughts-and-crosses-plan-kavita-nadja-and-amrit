@@ -1,9 +1,7 @@
 import css from './Square.module.css';
 
-function Square({ value, makeMove, id }) {
-  function handleClick() {
-    makeMove(id, value)
-  }
+function Square({ value, handleClick}) {
+  
   return <div className={css.square} onClick={handleClick}>{value}</div>;
 }
 
