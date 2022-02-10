@@ -5,7 +5,7 @@ function Game() {
    const [board, setBoard] = useState(Array(9).fill(null));
    // A state to determine who's move is it based on player X
    const [moveX, setMoveX] = useState(true);
-   const [winner, setWinner] = useState("");
+   const [winner, setWinner] = useState();
 
    let currentPlayer = moveX ? "X" : "O";
 
@@ -17,12 +17,15 @@ function Game() {
             return;
          }
          // Update board
-         setBoard([
+         let newBoard = [
             ...board.slice(0, index),
             currentPlayer,
             ...board.slice(index + 1),
-         ]);
-         checkWinner(currentPlayer, board);
+         ];
+
+         setBoard(newBoard);
+
+         checkWinner(currentPlayer, newBoard);
 
          // Toggle moveX
          setMoveX(!moveX);
@@ -54,7 +57,10 @@ function Game() {
       });
       console.log("won variable", won);
 
-      return { won, currentPlayer };
+      if (won) {
+         setWinner(currentPlayer);
+      }
+      //return { won, currentPlayer };
    }
 
    return (
