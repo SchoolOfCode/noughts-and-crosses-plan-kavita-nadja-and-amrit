@@ -10,29 +10,25 @@ function Game() {
    let currentPlayer = moveX ? "X" : "O";
 
    function makeMove(index) {
-      if (winner) {
+      if (board[index] !== null || winner) {
          return;
-      } else {
-         if (board[index] !== null || winner) {
-            return;
-         }
-
-         // needed to create as variable, so updated board can be used in checkWinner function
-         let newBoard = [
-            ...board.slice(0, index),
-            currentPlayer,
-            ...board.slice(index + 1),
-         ];
-
-         // Update board state
-         setBoard(newBoard);
-
-         // call checkWinner function → needs to be called before moveX is toggled and with updated/current board(newBoard)
-         checkWinner(currentPlayer, newBoard);
-
-         // Toggle moveX
-         setMoveX(!moveX);
       }
+
+      // needed to create as variable, so updated board can be used in checkWinner function
+      let newBoard = [
+         ...board.slice(0, index),
+         currentPlayer,
+         ...board.slice(index + 1),
+      ];
+
+      // Update board state
+      setBoard(newBoard);
+
+      // call checkWinner function → needs to be called before moveX is toggled and with updated/current board(newBoard)
+      checkWinner(currentPlayer, newBoard);
+
+      // Toggle moveX
+      setMoveX(!moveX);
    }
 
    //TODO: JSON serializing: https://stackoverflow.com/questions/6315180/javascript-search-array-of-arrays
